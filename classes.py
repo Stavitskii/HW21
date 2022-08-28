@@ -23,13 +23,13 @@ class Storage(ABC):
         pass
 
 
-class Store(Storage):
+class Store(Storage, ABC):
     def __init__(self, items: dict, capacity=100):
         self.__items = items
         self.__capacity = capacity
 
     def add(self, name, count):
-        if self.get_free_space() >= count
+        if self.get_free_space() >= count:
             self.__items[name] += count
         else:
             return "Not enough space in the storage"
