@@ -81,6 +81,7 @@ class Shop(Store):
 
             super().add(name, count)
 
+
 class Request:
     def __init__(self, request_str):
         req_list = request_str.split()
@@ -97,11 +98,8 @@ class Request:
             self.__to = req_list[6]
             self.__from = None
 
-
-
-
-
-
-
-
-
+    def move(self):
+        if self.__to:
+            eval(self.__to).add(self.__item, self.__count)
+        if self.__from:
+            eval(self.__from).remove(self.__item, self.__count)
