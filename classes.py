@@ -82,8 +82,8 @@ class Shop(Store):
         else:
             if super().add(name, count):
                 return True
-            else:
-                return False
+            # else:
+            #     return False
 
 
 class Request:
@@ -103,8 +103,10 @@ class Request:
                 print(f"A courier is getting {self.__count} {self.__item} from {self.__from} to {self.__to}")
                 if eval(self.__to).add(self.__item, self.__count):
                     print(f"A courier have taken {self.__count} {self.__item} to {self.__to}")
-                store_items = str(eval(self.__from).get_items)
-                print(store_items)
+
+                print(eval(self.__from).get_items)
+                print(eval(self.__to).get_items)
+
         except:
             print("Something is wrong with the order")
 
@@ -113,10 +115,10 @@ class Request:
 
 store_1 = Store(items={"cheese": 10, "milk": 10, "apple": 10})
 store_2 = Store(items={"cheese": 10, "milk": 10, "onions": 10})
-shop_1 = Shop(items={"cheese": 3, "milk": 3, "apple": 3}, capacity=7)
+shop_1 = Shop(items={"cheese": 3, "milk": 3, "apple": 3}, capacity=11)
 
 
-test_text = "Bring 4 cheese from store_1 to shop_1"
+test_text = "Bring 3 cheese from store_1 to shop_1"
 req = Request(test_text)
 req.move()
 
