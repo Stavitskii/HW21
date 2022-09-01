@@ -38,6 +38,7 @@ class Store(Storage, ABC):
         else:
             if self.get_free_space() >= count:
                 self.__items[name] = count
+
             else:
                 print("Not enough space in the storage")
                 return "Not enough space in the storage"
@@ -45,7 +46,7 @@ class Store(Storage, ABC):
     def remove(self, name, count):
         if self.__items[name] >= count:
             self.__items[name] -= count
-
+            print(f"Goods in the store are enough")
         else:
             print("Not enough goods in the storage")
             return "Not enough goods in the storage"
@@ -88,18 +89,26 @@ class Request:
         action = req_list[0]
         self.__count = int(req_list[1])
         self.__item = req_list[2]
-        if action == "Supply":
-            self.__from = req_list[4]
-            self.__to = req_list[6]
-        elif action == "Take":
-            self.__from = req_list[4]
-            self.__to = None
-        elif action == "Bring":
-            self.__to = req_list[6]
-            self.__from = None
+        self.__to = req_list[6]
+        self.__from = req_list[4]
 
     def move(self):
-        if self.__to:
-            eval(self.__to).add(self.__item, self.__count)
-        if self.__from:
+        try:
             eval(self.__from).remove(self.__item, self.__count)
+            print(f"A courier took {self.__count} {self.__item} from {self.__from}")
+            print(f"A courier is getting {self.__count} {self.__item} from {self.__from} to {self.__to}")
+        except:
+            print("Something is wrong with the order")
+        try:
+            eval(self.__to).add(self.__item, self.__count)
+            print(f"A courier have taken {self.__count} {self.__item} to {self.__to}")
+        except:
+            print("Something is wrong with the shop")
+        print(self.__from)
+
+
+
+
+
+
+
