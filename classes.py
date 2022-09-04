@@ -110,8 +110,8 @@ class Request:
                 else:
                     eval(self.__from).add(self.__item, self.__count)
 
-                print(f" At the {self.__from}:\n {eval(self.__from).get_items}\n")
-                print(f" At the {self.__to}:\n {eval(self.__to).get_items}\n")
+                print(f" At the {self.__from}:\n {eval(self.__from)}\n")
+                print(f" At the {self.__to}:\n {eval(self.__to)}\n")
 
         except:
             print("Something is wrong with the order")
